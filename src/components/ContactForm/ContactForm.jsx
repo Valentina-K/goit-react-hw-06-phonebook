@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { customAlphabet } from 'nanoid';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import Form from './ContactForm.styled';
+import { addContact } from '../../redux/contactSlice';
 
 const nanoid = customAlphabet('1234567890id-', 5);
 
-const ContactForm = ({ onSubmit }) => {
+const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const dispatch = useDispatch();
 
   const nameInput = nanoid();
   const numberInput = nanoid();
@@ -32,7 +35,8 @@ const ContactForm = ({ onSubmit }) => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    onSubmit({ name, number });
+    dispatch(addContact({ id: nanoid(), name, number }));
+    //onSubmit({ name, number });
     reset();
   };
 
@@ -69,8 +73,8 @@ const ContactForm = ({ onSubmit }) => {
   );
 };
 
-ContactForm.propTypes = {
+/* ContactForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-};
+}; */
 
 export default ContactForm;

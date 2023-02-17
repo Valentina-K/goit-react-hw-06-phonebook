@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { customAlphabet } from 'nanoid';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+//import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Container } from './App.styled';
 import ContactForm from './ContactForm';
 import Filter from './Filter';
@@ -27,7 +27,7 @@ export const App = () => {
   );
   const addContact = ({ name, number }) => {
     if (contacts.some(contact => contact.name === name)) {
-      Notify.warning(`${name} is already in contacts`);
+      //Notify.warning(`${name} is already in contacts`);
     } else {
       setContacts(prevState => [...prevState, { id: nanoid(), name, number }]);
     }
