@@ -1,14 +1,13 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeFilter } from '../../redux/filterSlice';
-import { filterContacts } from '../../redux/contactSlice';
 import { FilterBox } from './Filter.styled';
+import { getFilter } from 'redux/selectors';
 const Filter = () => {
-  const filter = useSelector(state => state.filter);
+  const filter = useSelector(getFilter);
   const dispatch = useDispatch();
   const handleChange = e => {
     dispatch(changeFilter(e.target.value));
-    dispatch(filterContacts(e.target.value));
   };
   return (
     <FilterBox>

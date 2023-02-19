@@ -8,9 +8,10 @@ import { persistStore, persistReducer,FLUSH,
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 import contactReducer from './contactSlice';
 import filterReducer from './filterSlice';
+
 const persistConfig = {
   key: 'root',
-  storage,
+  storage,  
 }
 const persistedContactsReducer = persistReducer(persistConfig, contactReducer)
 export const store = configureStore({
