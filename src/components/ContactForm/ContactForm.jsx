@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Form from './ContactForm.styled';
 import { addContact } from 'redux/contactSlice';
 import { getContacts } from 'redux/selectors';
-import { useAlert } from 'react-alert';
 
 const nanoid = customAlphabet('1234567890id-', 5);
 
@@ -13,7 +12,6 @@ const ContactForm = () => {
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
-  const alert = useAlert();
 
   const nameInput = nanoid();
   const numberInput = nanoid();
@@ -40,9 +38,8 @@ const ContactForm = () => {
     evt.preventDefault();
     if (!contacts.some(contact => contact.name === name)) {
       dispatch(addContact({ id: nanoid(), name, number }));
-      alert.success(`${name} added successfully`);
     } else {
-      alert.show(`${name} is already in contacts`);
+      alert(`${name} is already in contacts`);
     }
     reset();
   };
